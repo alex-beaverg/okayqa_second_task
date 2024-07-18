@@ -13,6 +13,6 @@ jobs:
           architecture: x64
           cache: maven
       - name: Build with Maven
-        run: mvn verify
+        run: mvn verify -Dsuite=form
       - name: Run with Maven
         run: mvn clean test -Dsuite=form
