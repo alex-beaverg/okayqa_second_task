@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Operation 36 form web testing" verbose="1" parallel="tests" thread-count="1">
+    <test name="Successful data entering testing" parallel="methods" thread-count="1">
+        <classes>
+            <class name="qa.okay.tests.Operation36FormPositiveTest"/>
+        </classes>
+    </test>
+</suite>

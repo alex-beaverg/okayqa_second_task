@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка обязательности полей</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Проверка обязательности полей</h2>
+        <div class="form-group">
+            <label for="accountType">Тип счета:</label>
+            <select id="accountType">
+                <option value="N">N</option>
+                <option value="R">R</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="checkRule">Проверка обязательности по правилам:</label>
+            <select id="checkRule">
+                <option value="Депозитария">Депозитария</option>
+                <option value="Реестра">Реестра</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="accountNumber">Номер счета:</label>
+            <input type="text" id="accountNumber">
+        </div>
+        <div class="form-group">
+            <label for="accountTypeField">Тип счета:</label>
+            <input type="text" id="accountTypeField">
+        </div>
+        <button onclick="validate()">Проверить</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function validate() {
+            const accountType = document.getElementById('accountType').value;
+            const checkRule = document.getElementById('checkRule').value;
+            const accountNumber = document.getElementById('accountNumber').value;
+            const accountTypeField = document.getElementById('accountTypeField').value;
+
+            let resultMessage = '';
+            let isValid = true;
+
+            if ((accountType === 'N' && checkRule === 'Депозитария') || (accountType === 'R' && checkRule === 'Депозитария')) {
+                if (!accountNumber) {
+                    isValid = false;
+                    resultMessage = 'Ошибка: Необходимо заполнить поле "Номер счета" в блоке "Получатель"';
+                }
+            } else if ((accountType === 'R' && checkRule === 'Реестра') || (accountType === 'N' && checkRule === 'Реестра')) {
+                if (!accountTypeField) {
+                    isValid = false;
+                    resultMessage = 'Ошибка: Необходимо заполнить поле "Тип счета" в блоке "Получатель"';
+                }
+            }
+
+            if (isValid) {
+                resultMessage = 'Успех: Все обязательные поля заполнены корректно';
+            }
+
+            document.getElementById('result').innerText = resultMessage;
+        }
+    </script>
+</body>
+</html>
