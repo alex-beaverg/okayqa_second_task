@@ -19,11 +19,7 @@ public class BaseTest {
     @Step(value = "Getting web driver step")
     @BeforeMethod(alwaysRun = true)
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
-        Configuration.browserCapabilities = options;
+        addChromeOptionsForGitHubActions();
         open();
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
@@ -31,6 +27,15 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void teardown() {
         closeWebDriver();
+    }
+
+    @Step(value = "Adding options for GitHub Actions")
+    private void addChromeOptionsForGitHubActions() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
+        Configuration.browserCapabilities = options;
     }
 
     @Step(value = "Getting home page step")
