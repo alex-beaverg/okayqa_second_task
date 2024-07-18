@@ -1,7 +1,9 @@
 package qa.okay.base;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import qa.okay.pages.HomePage;
@@ -17,6 +19,11 @@ public class BaseTest {
     @Step(value = "Getting web driver step")
     @BeforeMethod(alwaysRun = true)
     public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
+        Configuration.browserCapabilities = options;
         open();
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
