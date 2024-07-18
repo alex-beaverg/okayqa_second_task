@@ -11,8 +11,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           architecture: x64
-          cache: maven
-      - name: Build with Maven
-        run: mvn verify -Dsuite=form
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v2
+      - run: chromedriver --url-base=/wd/hub &
       - name: Run with Maven
         run: mvn clean test -Dsuite=form
