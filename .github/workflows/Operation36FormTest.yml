@@ -39,13 +39,6 @@ jobs:
           publish_branch: gh-pages
           publish_dir: allure-history
 
-      - name: Read Json
-        id: set-var
-        run: |
-          content=`cat ../last-history/history-trend.json`
-          echo "::set-output name=packageJson::$content"
-          echo "${{fromJson(steps.set_var.outputs.packageJson).version}}"
-
       - name: Send results to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.26.0
