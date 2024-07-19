@@ -11,9 +11,35 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           architecture: x64
+
       - name: Run with Maven
         run: mvn clean test -Dsuite=form
-      - name: Send GitHub Action trigger data to Slack workflow
+
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: build/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.WORKFLOW_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      - name: Send results to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.26.0
         with:
