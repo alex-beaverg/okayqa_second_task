@@ -17,4 +17,4 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.26.0
         env:
-          SLACK_WEBHOOK_URL: ${{ https://hooks.slack.com/triggers/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 }}
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/triggers/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
