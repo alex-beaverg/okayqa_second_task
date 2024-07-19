@@ -16,7 +16,7 @@ jobs:
         run: mvn clean test -Dsuite=form
 
       - name: Load test report history
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
@@ -32,7 +32,7 @@ jobs:
           allure_results: target/allure-results
 
       - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: always()
         with:
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
