@@ -19,7 +19,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "RESULTS: PASSED - ${{ passed }}, FAILED - ${{ failed }}, RATE - ${{ passed_rate }}"            
+              "text": "RESULTS: PASSED - ${{ variables.PASSED }}, FAILED - ${{ variables.FAILED }}, RATE - ${{ variable.PASSED_RATE }}"            
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
