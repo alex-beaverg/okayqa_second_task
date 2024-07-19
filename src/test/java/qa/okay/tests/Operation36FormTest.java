@@ -12,7 +12,7 @@ import qa.okay.pages.HomePage;
 import static qa.okay.utils.PropertyGetter.getProperty;
 
 @Epic("Operation 36 form web testing")
-public class Operation36FormPositiveTest extends BaseTest {
+public class Operation36FormTest extends BaseTest {
 
     @Test(dataProvider = "getTestData")
     @Story("Successful data entering testing")

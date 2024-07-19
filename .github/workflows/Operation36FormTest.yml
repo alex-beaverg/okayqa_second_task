@@ -13,3 +13,8 @@ jobs:
           architecture: x64
       - name: Run with Maven
         run: mvn clean test -Dsuite=form
+      - name: Send GitHub Action trigger data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.26.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ https://hooks.slack.com/triggers/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 }}

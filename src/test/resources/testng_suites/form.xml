@@ -3,7 +3,7 @@
 <suite name="Operation 36 form web testing" verbose="1" parallel="tests" thread-count="1">
     <test name="Successful data entering testing" parallel="methods" thread-count="1">
         <classes>
-            <class name="qa.okay.tests.Operation36FormPositiveTest"/>
+            <class name="qa.okay.tests.Operation36FormTest"/>
         </classes>
     </test>
 </suite>
