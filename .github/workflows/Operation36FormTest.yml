@@ -40,7 +40,6 @@ jobs:
           publish_dir: allure-history
 
       - name: Read Json
-        uses: actions/checkout@v4
         id: set-var
         run: |
           content=`cat ../last-history/history-trend.json`
