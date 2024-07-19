@@ -40,6 +40,7 @@ jobs:
           publish_dir: allure-history
 
       - name: Read Json file
+        runs-on: ubuntu-latest
         steps:
           - id: var
             run: |
