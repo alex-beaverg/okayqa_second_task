@@ -39,15 +39,13 @@ jobs:
           publish_branch: gh-pages
           publish_dir: allure-history
 
-      - name: Read Json file
+      - name: Read Json
         uses: actions/checkout@v4
-        steps:
-          - id: var
-            run: |
-              content=`cat ../last-history/history-trend.json`
-              echo "::set-output name=packageJson::$content"
-          - run: |
-              echo "${{fromJson(steps.set_var.outputs.packageJson).version}}"
+        id: set-var
+        run: |
+          content=`cat ../last-history/history-trend.json`
+          echo "::set-output name=packageJson::$content"
+          echo "${{fromJson(steps.set_var.outputs.packageJson).version}}"
 
       - name: Send results to Slack workflow
         id: slack
